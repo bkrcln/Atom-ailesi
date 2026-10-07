@@ -1,0 +1,14 @@
+# bağımlılıklar ve derleme çıktıları
+node_modules
+.next
+out
+
+# gizli bilgiler: anahtarlar asla depoya girmez
+.env
+.env*.local
+!.env.example
+
+# Vercel ve sistem dosyaları
+.vercel
+*.log
+.DS_Store

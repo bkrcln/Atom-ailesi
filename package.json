@@ -1,0 +1,19 @@
+{
+  "name": "atom-ailesi",
+  "version": "0.1.0",
+  "private": true,
+  "description": "İlkokul öğrencileri için atomun yapısını oyunlarla öğreten eğitim uygulaması",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "engines": {
+    "node": ">=20.9"
+  },
+  "dependencies": {
+    "next": "16.4.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  }
+}
