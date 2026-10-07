@@ -3,10 +3,11 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { oyunuBaslat } from '@/lib/oyun-motoru';
+import GluonaSor from './GluonaSor';
 
 const c = renk => ({ '--c': `var(--${renk})` });
 
-export default function Oyun({ baslangicYildiz = 0 }) {
+export default function Oyun({ baslangicYildiz = 0, ad, kota }) {
   const router = useRouter();
 
   useEffect(() => {
@@ -33,6 +34,7 @@ export default function Oyun({ baslangicYildiz = 0 }) {
           <button type="button" className="tab" role="tab" id="t-kur" data-tab="kur" aria-controls="p-kur" style={c('proton')}>Atom kur</button>
           <button type="button" className="tab" role="tab" id="t-foton" data-tab="foton" aria-controls="p-foton" style={c('photon')}>Foton yakala</button>
           <button type="button" className="tab" role="tab" id="t-quiz" data-tab="quiz" aria-controls="p-quiz" style={c('quark')}>Bilgi yarışması</button>
+          <button type="button" className="tab" role="tab" id="t-sor" data-tab="sor" aria-controls="p-sor" style={c('gluon')}>Gluon Dede&apos;ye sor</button>
         </nav>
         <div className="hud">
           <div className="stars" id="stars" aria-live="polite">
@@ -164,6 +166,11 @@ export default function Oyun({ baslangicYildiz = 0 }) {
           <p className="feedback exp" id="qExp" aria-live="polite" />
           <div className="btn-row"><button type="button" className="btn green" id="qNext" hidden>Sonraki soru</button></div>
         </div>
+      </section>
+
+      {/* 5. Gluon Dede'ye sor (yapay zekâ asistanı) */}
+      <section className="panel" id="p-sor" role="tabpanel" aria-labelledby="t-sor" hidden>
+        <GluonaSor ad={ad} kota={kota} />
       </section>
 
       <canvas id="confetti" aria-hidden="true" />
