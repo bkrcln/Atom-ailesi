@@ -112,8 +112,9 @@ git push -u origin main
 
 1. [vercel.com](https://vercel.com) → **Add New → Project** → GitHub deposunu seç → **Deploy**.
 2. Proje sayfasında **Storage** → **Create Database** → **Neon (Serverless Postgres)** → projeye bağla. `DATABASE_URL` ortam değişkeni otomatik eklenir.
-3. **Settings → Environment Variables** bölümüne şunu ekle:
-   - `GEMINI_API_KEY` → [Google AI Studio](https://aistudio.google.com/apikey) üzerinden aldığın anahtar
+3. **Settings → Environment Variables** bölümüne yapay zekâ anahtarını ekle:
+   - `EVREN_API_KEY` → [EVREN Milli LLM Platformu](https://evren.ssyz.org.tr/api-keys) üzerinden aldığın anahtar (Önerilen)
+   - *veya* `GEMINI_API_KEY` → [Google AI Studio](https://aistudio.google.com/apikey) üzerinden aldığın anahtar
 4. **Deployments** → son yayının yanındaki menüden **Redeploy** de.
 
 ### 3. Tabloları oluştur
@@ -142,9 +143,14 @@ npm run dev
 | Değişken | Zorunlu mu? | Açıklama |
 |---|---|---|
 | `DATABASE_URL` | Evet | Neon Postgres bağlantı adresi (Vercel otomatik ekler) |
-| `GEMINI_API_KEY` | Evet | Gemini API anahtarı; yalnızca sunucuda kullanılır |
+| `EVREN_API_KEY` | Evet* | EVREN API anahtarı (`evren_llm_...`); yalnızca sunucuda kullanılır |
+| `EVREN_MODEL` | Hayır | Varsayılan `deepseek-v4.1-flash` |
+| `GEMINI_API_KEY` | Evet* | Alternatif olarak Gemini API anahtarı |
 | `GEMINI_MODEL` | Hayır | Varsayılan `gemini-3.5-flash` |
+| `AI_PROVIDER` | Hayır | Tercih edilen sağlayıcı (`evren` veya `gemini`) |
 | `GUNLUK_SORU_LIMITI` | Hayır | Kullanıcı başı günlük soru hakkı, varsayılan `10` |
+
+*\*`EVREN_API_KEY` veya `GEMINI_API_KEY` ikilisinden en az birinin tanımlı olması yeterlidir.*
 
 ---
 
