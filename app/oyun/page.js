@@ -1,17 +1,19 @@
-import Link from 'next/link';
-import Logo from '@/components/Logo';
+import UstMenu from '@/components/UstMenu';
 import Oyun from '@/components/Oyun';
+import { girisZorunlu } from '@/lib/oturum';
+import { toplamYildiz } from '@/lib/ilerleme';
 
 export const metadata = { title: 'Oyun' };
 
-export default function OyunSayfasi() {
+export default async function OyunSayfasi() {
+  const kullanici = await girisZorunlu();
+  const yildiz = await toplamYildiz(kullanici.id);
+
   return (
     <>
-      <header className="ust">
-        <Link href="/" className="marka"><Logo /><strong>Atom Ailesi</strong></Link>
-      </header>
+      <UstMenu kullanici={kullanici} />
       <main className="wrap">
-        <Oyun />
+        <Oyun baslangicYildiz={yildiz} />
       </main>
     </>
   );

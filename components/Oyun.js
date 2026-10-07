@@ -1,12 +1,24 @@
 'use client';
 
 import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { oyunuBaslat } from '@/lib/oyun-motoru';
 
 const c = renk => ({ '--c': `var(--${renk})` });
 
-export default function Oyun({ baslangicYildiz = 0, kaydet }) {
+export default function Oyun({ baslangicYildiz = 0 }) {
+  const router = useRouter();
+
   useEffect(() => {
+    // Biten her görev ve oyun, yıldızlarıyla birlikte veritabanına kaydedilir.
+    const kaydet = async kayit => {
+      const cevap = await fetch('/api/ilerleme', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(kayit)
+      }).catch(() => null);
+      if (cevap && cevap.status === 401) router.replace('/?yonlendirme=1');
+    };
     const durdur = oyunuBaslat({ baslangicYildiz, kaydet });
     return durdur;
     // Oyun yalnızca bir kez kurulur; motor DOM'u kendisi yönetir.

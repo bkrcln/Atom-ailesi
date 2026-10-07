@@ -1,12 +1,24 @@
-import Link from 'next/link';
+import { redirect } from 'next/navigation';
 import Logo from '@/components/Logo';
+import GirisFormu from '@/components/GirisFormu';
+import { oturumKullanicisi } from '@/lib/oturum';
 
 const AILE = [
   ['Anne Proton', 'proton'], ['Baba Nötron', 'neutron'], ['Elektron Kardeşler', 'electron'],
   ['Kuark Bebekler', 'quark'], ['Gluon Dede', 'gluon'], ['Foton Postacı', 'photon']
 ];
 
-export default function AnaSayfa() {
+const BILDIRIMLER = {
+  yonlendirme: { tur: 'bilgi', metin: 'Oyuna girmek için önce giriş yapmalısın.' },
+  cikis: { tur: 'basari', metin: 'Çıkış yaptın. Görüşmek üzere!' }
+};
+
+export default async function AnaSayfa({ searchParams }) {
+  if (await oturumKullanicisi()) redirect('/oyun');
+
+  const parametreler = await searchParams;
+  const bildirim = parametreler?.yonlendirme ? BILDIRIMLER.yonlendirme : parametreler?.cikis ? BILDIRIMLER.cikis : null;
+
   return (
     <main className="karsilama">
       <div>
@@ -18,9 +30,9 @@ export default function AnaSayfa() {
         </ul>
       </div>
       <div className="card giris-kart">
-        <h2>Hazır mısın?</h2>
-        <p>Dört bölümlük atom macerası seni bekliyor.</p>
-        <div className="btn-row"><Link className="btn" href="/oyun">Oyuna başla</Link></div>
+        <h2>Giriş yap</h2>
+        <p className="muted">Oyuna girmek için hesabınla giriş yap.</p>
+        <GirisFormu bildirim={bildirim} />
       </div>
     </main>
   );

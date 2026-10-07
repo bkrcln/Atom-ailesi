@@ -6,13 +6,16 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "db:kur": "node --env-file=.env.local scripts/db-kur.mjs"
   },
   "engines": {
     "node": ">=20.9"
   },
   "dependencies": {
+    "bcryptjs": "3.0.3",
     "next": "16.4.0",
+    "pg": "8.23.1",
     "react": "19.3.0",
     "react-dom": "19.3.0"
   }
