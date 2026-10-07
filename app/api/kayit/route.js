@@ -26,6 +26,9 @@ export async function POST(istek) {
     return cevap;
   } catch (e) {
     console.error('Kayıt hatası:', e);
+    if (!process.env.DATABASE_URL && !process.env.POSTGRES_URL) {
+      return hata('Veritabanı bağlantısı bulunamadı. Vercel Storage üzerinden Postgres bağlamalısınız.', 500);
+    }
     return hata('Sunucuda bir sorun oluştu. Biraz sonra tekrar dene.', 500);
   }
 }
