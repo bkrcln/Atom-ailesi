@@ -1,6 +1,6 @@
 {
   "name": "atom-ailesi",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "description": "İlkokul öğrencileri için atomun yapısını oyunlarla öğreten eğitim uygulaması",
   "scripts": {

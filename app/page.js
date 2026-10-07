@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation';
-import Logo from '@/components/Logo';
+import HareketliAtom from '@/components/HareketliAtom';
 import GirisFormu from '@/components/GirisFormu';
 import { oturumKullanicisi } from '@/lib/oturum';
 
@@ -22,9 +22,9 @@ export default async function AnaSayfa({ searchParams }) {
   return (
     <main className="karsilama">
       <div>
-        <Logo boyut={84} />
+        <HareketliAtom />
         <h1>Atom Ailesi</h1>
-        <p className="giris-metni">Atomun içinde koca bir aile yaşar. Onlarla tanış, kendi atomunu kur, fotonları yakala ve bilgi yarışmasında yıldızları topla!</p>
+        <p className="giris-metni">Atomun içinde koca bir aile yaşar. Onlarla tanış, kendi atomunu kur, fotonları yakala, Gluon Dede&apos;ye merak ettiklerini sor ve yıldızları topla!</p>
         <ul className="aile">
           {AILE.map(([ad, renk]) => <li key={ad}><i style={{ '--c': `var(--${renk})` }} />{ad}</li>)}
         </ul>

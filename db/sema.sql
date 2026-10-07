@@ -52,3 +52,11 @@ CREATE TABLE IF NOT EXISTS sorular (
   olusturma     TIMESTAMPTZ  NOT NULL DEFAULT now()
 );
 CREATE INDEX IF NOT EXISTS sorular_kullanici_idx ON sorular (kullanici_id, olusturma DESC);
+
+-- Hatalı giriş denemeleri: 15 dakikada 5 hatalı denemeden sonra giriş geçici olarak durdurulur
+CREATE TABLE IF NOT EXISTS giris_denemeleri (
+  id      SERIAL PRIMARY KEY,
+  eposta  VARCHAR(254) NOT NULL,
+  zaman   TIMESTAMPTZ  NOT NULL DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS giris_denemeleri_idx ON giris_denemeleri (eposta, zaman DESC);

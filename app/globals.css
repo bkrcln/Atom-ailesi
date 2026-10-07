@@ -143,6 +143,9 @@ a{color:var(--electron)}
 .aile li{display:flex;align-items:center;gap:8px;font-weight:800;font-size:.95rem;background:var(--panel);border:2px solid var(--line);border-radius:999px;padding:6px 14px 6px 8px}
 .aile i{width:18px;height:18px;border-radius:50%;background:var(--c);border:2px solid #fff;flex:none}
 .giris-kart h2{margin-bottom:4px}
+.hero-atom{display:block;width:min(100%,420px);height:auto;margin:0 0 6px -18px;overflow:visible}
+.hero-yorunge{fill:none;stroke:#FFD23F;stroke-width:3;filter:drop-shadow(0 0 5px rgba(255,210,63,.7))}
+.hero-atom .sabit{display:none}
 
 /* ==========================================================
    Formlar ve bildirimler
@@ -243,6 +246,14 @@ a{color:var(--electron)}
   .marka svg{width:42px;height:42px}
   .soru-formu{flex-direction:column}
 }
+@media (max-width:620px){
+  .tab:last-child:nth-child(odd){grid-column:1/-1}
+  .hero-atom{width:min(100%,280px);margin-left:-10px}
+  .karsilama{padding-top:16px;gap:18px}
+  .karsilama .aile{display:none}
+}
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .hero-atom .hareketli{display:none}
+  .hero-atom .sabit{display:inline}
 }
